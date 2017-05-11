@@ -43,14 +43,13 @@ class TjreportsViewReports extends JViewLegacy
 		$input = JFactory::getApplication()->input;
 		$TjreportsModelReports = new TjreportsModelReports;
 		$app = JFactory::getApplication();
-/*
+
 		if (!$canDo->get('view.reports'))
 		{
-			JError::raiseError(500, JText::_('JERROR_ALERTNOAUTHOR'));
+			JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
 
 			return false;
 		}
-*/
 
 		$client = $input->get('client', '', 'STRING');
 
