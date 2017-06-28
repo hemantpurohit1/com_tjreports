@@ -109,8 +109,10 @@ $document->addScriptDeclaration('var allow_permission = "' . $allow_permission .
 			<div class="row-fluid">
 				<div class="span5 dropdown-list">
 								<?php
+
 									if (!empty($this->options)): ?>
-										<?php echo JHtml::_('select.genericlist', $this->options, "filter_selectplugin", 'class="" size="1" onchange="loadReport(this.value,' . $menuItem->id . ');" name="filter_selectplugin"', "value", "text",  $reportId);
+										<?php
+										echo JHtml::_('select.genericlist', $this->options, "filter_selectplugin", 'class="" size="1" onchange="loadReport(this.value,' . $menuItem->id . ');" name="filter_selectplugin"', "value", "text",  $reportId);
 											?>
 								<?php endif; ?>
 				</div>
@@ -174,7 +176,6 @@ $document->addScriptDeclaration('var allow_permission = "' . $allow_permission .
 					</div>
 				</div>
 			</div>
-			<br>
 			<div>
 				<div class="report-top-bar row">
 					<?php if (empty($this->items)):	?>
@@ -188,27 +189,30 @@ $document->addScriptDeclaration('var allow_permission = "' . $allow_permission .
 					</div>
 
 					<div>
-					<div class="span12">
-						<?php
-						if (!empty($this->saveQueriesList)): ?>
-							<div>
-									<?php echo JHtml::_('select.genericlist', $this->saveQueriesList, "filter_saveQuery", 'class="" size="1" onchange="getQueryResult(this.value,'. $menuItem->id .');" name="filter_saveQuery"', "value", "text", $currentQuery);
-									?>
-							
-							</div><br>
+					<div class="row-fluid">
+							<?php
+							if (!empty($this->saveQueriesList)): ?>
+							<div class="span3">
+								<div>
+										<?php echo JHtml::_('select.genericlist', $this->saveQueriesList, "filter_saveQuery", 'class="" size="1" onchange="getQueryResult(this.value,'. $menuItem->id .');" name="filter_saveQuery"', "value", "text", $currentQuery);
+										?>
+								</div>
+							</div>
+
+						<?php if($queryId)
+					{ ?>
+						<div class="span2">
+							<button class= "btn btn-danger btn-small" onClick="deleteQuery(<?php echo $queryId; ?>);return false;"><i class="icon-trash"></i></button>
+						</div>
+						<?php } 
+					?>
+						
+						<br><br>
 						<?php endif; ?>
 					</div>
 					<div class="row-fluid">
 							<button class="btn" type="button" title="<?php echo "Clear"; ?>" onClick="window.location.reload();">Clear</button>
 
-
-					<?php if($queryId)
-					{ ?>
-						<div class="span2">
-<button class= "btn btn-danger" onClick="deleteQuery(<?php echo $queryId; ?>);return false;">Delete</button>
-						</div>
-					<?php } 
-					?>
 					</div>
 					<br/>
 					<div class="col-md-3 col-sm-3 col-xs-12">
